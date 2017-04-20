@@ -1,0 +1,16 @@
+version: '2'
+services:
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "32000:4444"
+      - "32001:5900"
+  robot_tests:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    links:
+      - selenium
+    volumes:
+      - ".:/tests"
+
